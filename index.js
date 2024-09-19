@@ -12,9 +12,6 @@ app.use(cors());
 // parse application/json
 app.use(bodyParser.json())
 
-app.use('/api/uploads',express.static(path.join(__dirname,'/api/uploads')))
-app.use('/images',express.static(path.join(__dirname,'images')))
-
 const url = process.env.USER_ID;
 
 const mongoose = require('mongoose')

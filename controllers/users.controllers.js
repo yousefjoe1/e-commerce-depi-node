@@ -16,7 +16,6 @@ const Users = require("../models/user.model");
 // const upload = multer({ storage: storage })
 
 const addUser = async ( req, res) => {
-
   const oldUser = await Users.findOne({ email: req.body.email });
 
 
@@ -39,7 +38,6 @@ const addUser = async ( req, res) => {
       await newUser.save();
       return res.json({status: "success",data: newUser,code: 201,msg: "Registerd 👍",token: token});
     } catch (error) {
-      console.log(error,'error register');
      return res.json({
         status: "error",
         data: null,
@@ -51,6 +49,7 @@ const addUser = async ( req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  
   const { email, password } = req.body;
 
   const user = await Users.findOne({ email: email });
@@ -130,6 +129,8 @@ const getUser = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
+  console.log(req);
+  
   const user = await Users.find();
   res.json({ status: "success", data: user });
 };

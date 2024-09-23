@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema({
       required: true,
       trim: true, // Remove leading/trailing whitespace
     },
-    // avatar: {
-    //   type: String,
-    //   required: false
-    // }
   });
 
 module.exports = mongoose.model('Users',userSchema)

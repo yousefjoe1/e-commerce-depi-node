@@ -14,20 +14,18 @@ const Cart = require("../models/cart.model");
 const Users = require("../models/user.model");
 
 const addProductToCart = async (req, res) => {
+  console.log(req.body);
+  
   const auth = req.headers["Authorization"] || req.headers["authorization"];
   const token = auth.split(" ")[1];
 
   try {
     if (!auth) {
-      return res.json({
-        data: { status: "error", data: null, code: 400, msg: "Login First" },
-      });
+      return res.json({ status: "error", data: null, code: 400, msg: "Login First" },);
     }
 
     if (token == undefined) {
-      return res.json({
-        data: { status: "error", data: null, code: 400, msg: "Login First" },
-      });
+      return res.json({ status: "error", data: null, code: 400, msg: "Login First" });
     }
 
     const isUser = jwt.verify(token, process.env.S_key);
@@ -47,7 +45,7 @@ const addProductToCart = async (req, res) => {
       count: req.body.count,
     });
     await newProduct.save();
-    res.status(201).send(newProduct); // Created (201) status code
+    res.json({ status: "success", data: newProduct, code: 201, msg: "Product saved in the cart" })
   } catch (error) {
     console.log(error);
     res.status(500).send("Error saving product");
@@ -60,15 +58,11 @@ const getCart = async (req, res) => {
 
   try {
     if (!auth) {
-      return res.json({
-        data: { status: "error", data: null, code: 400, msg: "Login First" },
-      });
+      return res.json({ status: "error", data: null, code: 400, msg: "Login First"});
     }
 
     if (token == undefined) {
-      return res.json({
-        data: { status: "error", data: null, code: 400, msg: "Login First" },
-      });
+      return res.json({ status: "error", data: null, code: 400, msg: "Login First" });
     }
 
     const isUser = jwt.verify(token, process.env.S_key);
@@ -83,7 +77,7 @@ const getCart = async (req, res) => {
         t += c
       })
 
-      res.json({ status: "success", data: cart, total: t });
+      res.json({ status: "success", data: cart, total: t ,sub_total: 0});
     } else {
       res.json({ status: "error", data: [] });
     }

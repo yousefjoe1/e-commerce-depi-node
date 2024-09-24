@@ -18,7 +18,6 @@ const productSchema = new mongoose.Schema({
     },
     discount: {
       type: Number,
-      required: true,
       min: 0.01, // Enforce minimum price (optional)
     },
     images: {
@@ -29,6 +28,12 @@ const productSchema = new mongoose.Schema({
     },
     colors: {
       type: Array,
+    },
+    main_category: {
+      type: String,
+    },
+    sub_category: {
+      type: String,
     },
   });
 

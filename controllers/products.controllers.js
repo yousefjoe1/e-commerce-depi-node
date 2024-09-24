@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 const Products = require("../models/product.model");
 
 const addProduct = async (req, res) => {
+console.log(req.body);
 
   try {
     const auth = req.headers["Authorization"] || req.headers["authorization"];
@@ -24,17 +25,16 @@ const addProduct = async (req, res) => {
       return res.json({ data: { msg: "You need to be an admin", code: 301 } });
     }
 
-    let defaultimg = "https://i.postimg.cc/wxtqXwss/image-For-Entry35-1s-Q.jpg";
-
-    let img = req.body.image == "" ? defaultimg : req.body.image;
     let newProduct = new Products({
       name: req.body.name,
       price: req.body.price,
       details: req.body.details,
-      in_cart: false,
-      in_favorit: false,
-      image: img,
-      type: req.body.type
+      images: req.body.images,
+      discount: req.body.discount,
+      main_category:req.body.main_category,
+      sub_category:req.body.sub_category,
+      colors:req.body.colors,
+      sizes: req.body.sizes,
     });
 
     await newProduct.save();

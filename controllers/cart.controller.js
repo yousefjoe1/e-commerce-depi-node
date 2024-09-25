@@ -14,7 +14,6 @@ const Cart = require("../models/cart.model");
 const Users = require("../models/user.model");
 
 const addProductToCart = async (req, res) => {
-  console.log(req.body);
   
   const auth = req.headers["Authorization"] || req.headers["authorization"];
   const token = auth.split(" ")[1];
@@ -37,7 +36,7 @@ const addProductToCart = async (req, res) => {
     const filterdCart = userCart.filter((p) => p.product._id == product_id);
 
     if (filterdCart.length != 0) {
-      return res.status(201).send({ product: true });
+      return res.status(201).send({stauts: 'success', in_cart: true });
     }
     const newProduct = new Cart({
       user_id: userId._id,

@@ -89,17 +89,6 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const productId = req.params.productId;
-      // const types = ["jpg", "jpeg", "png"];
-      // if (!types.includes(fileType)) {
-      //   return res
-      //     .status(400)
-      //     .send({
-      //       status: "error",
-      //       data: null,
-      //       code: 400,
-      //       msg: "The image has the wrong type ... choose image like: png or jpg or jpeg .",
-      //     });
-      // }
 
   const auth = req.headers["Authorization"] || req.headers["authorization"];
   const token = auth.split(" ")[1];

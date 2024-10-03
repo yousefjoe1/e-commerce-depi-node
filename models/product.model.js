@@ -29,12 +29,15 @@ const productSchema = new mongoose.Schema({
     colors: {
       type: Array,
     },
-    main_category: {
+    category: {
       type: String,
     },
     sub_category: {
       type: String,
     },
+    dress: {
+      type: String,
+    }
   });
 
 module.exports = mongoose.model('Products',productSchema)

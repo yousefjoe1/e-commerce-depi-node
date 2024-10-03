@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const Products = require("../models/product.model");
 
 const addProduct = async (req, res) => {
-console.log(req.body);
+console.log(req.body,'');
 
   try {
     const auth = req.headers["Authorization"] || req.headers["authorization"];
@@ -31,10 +31,11 @@ console.log(req.body);
       details: req.body.details,
       images: req.body.images,
       discount: req.body.discount,
-      main_category:req.body.main_category,
+      category:req.body.category,
       sub_category:req.body.sub_category,
       colors:req.body.colors,
       sizes: req.body.sizes,
+      dress: req.body.dress
     });
 
     await newProduct.save();

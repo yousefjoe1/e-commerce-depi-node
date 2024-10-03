@@ -18,6 +18,8 @@ const getUsers = async (req, res) => {
 
 const adminLogin = async (req, res) => {
   const { email, password } = req.body;
+  console.log('k');
+  
   
   const user = await Users.findOne({ email: email });
   

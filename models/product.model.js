@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     },
     discount: {
       type: Number,
-      min: 0, // Enforce minimum price (optional)
+      // min: 0, // Enforce minimum price (optional)
     },
     images: {
       type: Array, // Store image URL (consider using cloud storage for efficiency)

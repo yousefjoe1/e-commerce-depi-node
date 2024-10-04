@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const Products = require("../models/product.model");
 
 const addProduct = async (req, res) => {
-console.log(req.body,'');
+// console.log(req.body,'');
 
   try {
     const auth = req.headers["Authorization"] || req.headers["authorization"];
@@ -122,14 +122,28 @@ const updateProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
   const { q, limit } = req.query;
-  if(q || limit){
-    const products = await Products.find({ type: q }).limit(parseInt(limit));
-    const productsLength = await Products.find({ type: q }) ;
-    res.json({ status: "success", data: products,productLength: productsLength.length });
-  }else{
+  console.log(q);
+  
+  if(q){
+    const products = await Products.find({ dress: q });
+    res.json({ status: "success", data: products });
+    
+  }else {
+    
     const products = await Products.find();
     res.json({ status: "success", data: products });
   }
+  const productsLength = await Products.find({ dress: q }) ;
+
+
+  // if(q || limit){
+  //   const products = await Products.find({ type: q }).limit(parseInt(limit));
+  //   const productsLength = await Products.find({ type: q }) ;
+  //   res.json({ status: "success", data: products,productLength: productsLength.length });
+  // }else{
+  //   const products = await Products.find();
+  //   res.json({ status: "success", data: products });
+  // }
 };
 
 const getProduct = async (req, res) => {  

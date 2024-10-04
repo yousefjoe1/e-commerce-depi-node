@@ -52,6 +52,10 @@ const addProductToCart = async (req, res) => {
 };
 
 const getCart = async (req, res) => {
+  // console.log(req.headers,'heade r ');
+  // console.log(req,'cart');
+  
+  
   const auth = req.headers["Authorization"] || req.headers["authorization"];
   const token = auth.split(" ")[1];
 

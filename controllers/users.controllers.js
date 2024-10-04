@@ -51,6 +51,8 @@ const addUser = async ( req, res) => {
 const loginUser = async (req, res) => {
   
   const { email, password } = req.body;
+  console.log(req.body,'j');
+  
 
   const user = await Users.findOne({ email: email });
 
@@ -82,7 +84,7 @@ const loginUser = async (req, res) => {
         token: token,
       });
     } else {
-      return res.status(400).send({
+      return res.json({
         status: "error",
         data: null,
         code: 400,

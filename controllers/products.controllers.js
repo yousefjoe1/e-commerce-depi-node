@@ -121,11 +121,11 @@ const updateProduct = async (req, res) => {
 };
 
 const getProducts = async (req, res) => {
-  const { q, limit } = req.query;
+  const { q, count } = req.query;
   console.log(q);
   
-  if(q){
-    const products = await Products.find({ dress: q });
+  if(q || count){
+    const products = await Products.find().limit(parseInt(count));
     res.json({ status: "success", data: products });
     
   }else {

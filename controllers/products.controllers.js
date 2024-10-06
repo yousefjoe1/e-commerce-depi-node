@@ -121,19 +121,31 @@ const updateProduct = async (req, res) => {
 };
 
 const getProducts = async (req, res) => {
-  const { q, count } = req.query;
-  console.log(q);
+  const { q, count ,color,minPrice,maxPrice,size,category,dress } = req.query;
   
-  if(q || count){
-    const products = await Products.find().limit(parseInt(count));
-    res.json({ status: "success", data: products });
+  const query = {};
+
+  if (count) query.limit = parseInt(count);
+  if (color) query.colors = { $in: [ color ]};
+  if (dress) query.dress = dress;
+  if (minPrice) query.price = { $gte: parseInt(minPrice) };
+  if (maxPrice) query.price = { $lte: parseInt(maxPrice) };
+  if (size) query.size = { $in: [ size ]};
+  if (category) query.category = category;
+
+  const products = await Products.find(query);
+  res.json({ status: "success", data: products });
+  
+  // if(q || count){
+  //   const products = await Products.find().limit(parseInt(count));
+  //   res.json({ status: "success", data: products });
     
-  }else {
+  // }else {
     
-    const products = await Products.find();
-    res.json({ status: "success", data: products });
-  }
-  const productsLength = await Products.find({ dress: q }) ;
+  //   const products = await Products.find();
+  //   res.json({ status: "success", data: products });
+  // }
+  // const productsLength = await Products.find({ dress: q }) ;
 
 
   // if(q || limit){

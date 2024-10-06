@@ -125,7 +125,6 @@ const getProducts = async (req, res) => {
   
   const query = {};
 
-  if (count) query.limit = parseInt(count);
   if (color) query.colors = { $in: [ color ]};
   if (dress) query.dress = dress;
   if (minPrice) query.price = { $gte: parseInt(minPrice) };
@@ -133,7 +132,7 @@ const getProducts = async (req, res) => {
   if (size) query.size = { $in: [ size ]};
   if (category) query.category = category;
 
-  const products = await Products.find(query);
+  const products = await Products.find(query).limit(parseInt(count));
   res.json({ status: "success", data: products });
   
   // if(q || count){

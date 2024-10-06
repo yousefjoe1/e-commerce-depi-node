@@ -35,7 +35,6 @@ const addProductToCart = async (req, res) => {
 
     const userCart = await Cart.find({ user_id: userId._id });
     const filterdCart = userCart.filter((p) => p.product._id == product_id);
-    console.log(filterdCart);
     
     if (filterdCart.length != 0) {
       const newProductObj = { $set: { ...req.body } };

@@ -37,6 +37,9 @@ const productSchema = new mongoose.Schema({
     },
     dress: {
       type: String,
+    },
+    rate: {
+      type: Number,
     }
   });
 

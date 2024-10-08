@@ -35,7 +35,8 @@ const addProduct = async (req, res) => {
       sub_category:req.body.sub_category,
       colors:req.body.colors,
       sizes: req.body.sizes,
-      dress: req.body.dress
+      dress: req.body.dress,
+      rate: req.body.rate
     });
 
     await newProduct.save();

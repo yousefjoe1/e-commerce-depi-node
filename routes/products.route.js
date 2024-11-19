@@ -1,11 +1,13 @@
 
-const  {getProducts, addProduct, getProduct, updateProduct, deleteProduct}  = require('../controllers/products.controllers')
+const  {getProducts, addProduct, getProduct, updateProduct, deleteProduct, getVendorProducts}  = require('../controllers/products.controllers')
 
 const exp = require('express')
 
 const router = exp.Router()
 
 router.get('/',getProducts)
+
+router.get('/vendor-products',getVendorProducts)
 
 router.post('/',addProduct)
 

@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const app = express();
 
 const emailExist = "Email exist .. choose another one.";
-const wrongImg = "The image has the wrong type ... choose image like: png or jpg or jpeg.";
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -131,7 +129,9 @@ const getUser = async (req, res) => {
   res.json({ status: "success", data: user });
 };
 
-const getUsers = async (req, res) => {  
+const getUsers = async (req, res) => {
+  console.log(req);
+  
   const user = await Users.find();
   res.json({ status: "success", data: user });
 };

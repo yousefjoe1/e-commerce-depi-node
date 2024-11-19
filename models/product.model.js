@@ -40,7 +40,17 @@ const productSchema = new mongoose.Schema({
     },
     rate: {
       type: Number,
-    }
+    },
+    vendor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',  // Reference to the User schema (vendor)
+      required: true,
+    },
+    show: {
+      default: false,
+      type: Boolean,
+      // required: true,
+    },
   });
 
 module.exports = mongoose.model('Products',productSchema)

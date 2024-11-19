@@ -94,11 +94,12 @@ const getCart = async (req, res) => {
 
 const updateCart = async (req, res) => {
   const productId = req.params.cartId;
-
+  console.log(req.body);
   const newProductObj = { $set: { ...req.body } };
 
-  await Cart.updateOne({ _id: productId }, newProductObj);
-
+  let c = await Cart.updateOne({ _id: productId }, newProductObj);
+  console.log(c);
+  
   try {
     res.json({ status: "success", code: 201 }); // Created (201) status code
   } catch (error) {

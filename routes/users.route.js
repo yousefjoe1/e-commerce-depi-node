@@ -3,7 +3,6 @@ const exp = require('express')
 
 const router = exp.Router()
 
-
 router.post('/register', addUser)
 router.post('/login',loginUser)
 router.get('/verify-user',verifyUser)

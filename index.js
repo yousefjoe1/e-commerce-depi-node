@@ -1,6 +1,5 @@
 var express = require('express')
 var bodyParser = require('body-parser')
-const path = require('path')
 
 require('dotenv').config()
 
@@ -24,11 +23,13 @@ const productsRouter = require('./routes/products.route')
 const userRouter = require('./routes/users.route')
 const adminRouter = require('./routes/admin.route')
 const cartRouter = require('./routes/cart.route')
+const vendorRouter = require('./routes/vendor.route')
 
 app.use('/api/products',productsRouter)
 app.use('/api/users',userRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/cart',cartRouter)
+app.use('/api/vendors',vendorRouter)
 
 
 app.listen(4000,()=>{
